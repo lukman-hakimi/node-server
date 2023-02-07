@@ -15,7 +15,7 @@ const register = async (req, res) => {
     if(!data) res.status(StatusCodes.BAD_REQUEST).json({msg: "please make sure your data!!!"})
     res.status(StatusCodes.OK).json({msg: data});
   } catch (error) {
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({data: error});
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({msg: error.message});
   }
 }
 
