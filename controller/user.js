@@ -5,15 +5,17 @@ const jwt = require("jsonwebtoken");
 const { StatusCodes } = require("http-status-codes");
 
 const register = async (req, res) => {
+  const {email, name, password} = req.body
   try {
-    const existingEmail = await userModal.findOne({email});
+    const existingEmail = await userModal.findOne({email: email});
 
     if(existingEmail) return res.status(StatusCodes.BAD_REQUEST).json({msg:"this email already used!!"});
 
-    const data = await userModal.create({...req.body});
+    const data = await userModal.create({name, email, password});
+    if(!data) res.status(StatusCodes.BAD_REQUEST).json({msg: "please make sure your data!!!"})
     res.status(StatusCodes.OK).json({msg: data});
   } catch (error) {
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({msg: error.message});
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({data: error});
   }
 }
 
