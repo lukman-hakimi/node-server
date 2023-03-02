@@ -15,7 +15,7 @@ app.use(express.json());
 
 //Routes
 app.get("/", (req, res) => {
-  res.status(200).json("Amazon-clone-API")
+  res.status(200).send("Amazon-clone-API")
 })
 
 app.use("/api/user",userRoute);
