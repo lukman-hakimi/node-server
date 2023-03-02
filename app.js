@@ -14,6 +14,10 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 //Routes
+app.get("/", (req, res) => {
+  res.status(200).json("Amazon-clone-API")
+})
+
 app.use("/api/user",userRoute);
 app.use("/api/admin",adminRoute);
 app.use("/api/product",productRoute);

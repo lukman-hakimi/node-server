@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const ratingSchema = new mongoose.Schema({
   userId:{
-    type:String,
+    type:mongoose.Types.ObjectId,
     required:true,
   },
   rating:{
@@ -40,8 +40,8 @@ const productSchema = new mongoose.Schema({
     required:[true, "price field is required"]
   },
   rating:[ratingSchema]
-});
-
+}, { timestamps: true});
+ 
 const productModel = mongoose.model("product", productSchema);
 
 module.exports = {productModel};
